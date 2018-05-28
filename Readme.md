@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Андрей Шипицын](https://up.htmlacademy.ru/ecmascript/5/user/806995).
-* Наставник: `Неизвестно`.
+* Наставник: [Никита Ткачук](https://up.htmlacademy.ru/ecmascript/5/user/450211).
 
 ---
 
