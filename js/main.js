@@ -4,48 +4,54 @@ const TEMPLATE = document.querySelector(`template`).content;
 const SECTION_MAIN = document.querySelector(`section.main`);
 
 const DOM_SCREENS_LINKS = [
-  {screenName: `welcome`,
+  {
+    screenName: `welcome`,
     screenNumber: 0,
-    screenLink: TEMPLATE.querySelector(`.main--welcome`)},
-  {screenName: `genre`,
+    screenLink: TEMPLATE.querySelector(`.main--welcome`)
+  },
+  {
+    screenName: `genre`,
     screenNumber: 1,
-    screenLink: TEMPLATE.querySelector(`.main--level-genre`)},
-  {screenName: `level-artist`,
+    screenLink: TEMPLATE.querySelector(`.main--level-genre`)
+  },
+  {
+    screenName: `level-artist`,
     screenNumber: 2,
-    screenLink: TEMPLATE.querySelector(`.main--level-artist`)},
-  {screenName: `result`,
+    screenLink: TEMPLATE.querySelector(`.main--level-artist`)
+  },
+  {
+    screenName: `result`,
     screenNumber: 3,
-    screenLink: TEMPLATE.querySelector(`.main--result`)}
+    screenLink: TEMPLATE.querySelector(`.main--result`)
+  }
 ];
 
-{
-  const arrowsWrapHTML = [
-    `<style>`,
-    `.arrows__wrap {
+const arrowsWrapHTML = `
+  <style>
+    .arrows__wrap {
       position: absolute;
       top: 135px;
       left: 50%;
       margin-left: -56px;
-    }`,
-    `.arrows__btn {
+    }
+    .arrows__btn {
       background: none;
       border: 2px solid black;
       padding: 5px 20px;
-    }`,
-    `</style>`,
-    `<button class="arrows__btn"><-</button>`,
-    `<button class="arrows__btn">-></button>`
-  ].join(``);
+    }
+  </style>
+  <button class="arrows__btn"><-</button>
+  <button class="arrows__btn">-></button>
+`;
 
-  const arrowsWrapDiv = document.createElement(`div`);
-  arrowsWrapDiv.setAttribute(`class`, `arrows__wrap`);
-  arrowsWrapDiv.innerHTML = arrowsWrapHTML;
-  document.querySelector(`div.app`).appendChild(arrowsWrapDiv);
-}
+const arrowsWrapDiv = document.createElement(`div`);
+arrowsWrapDiv.setAttribute(`class`, `arrows__wrap`);
+arrowsWrapDiv.innerHTML = arrowsWrapHTML;
+document.querySelector(`div.app`).appendChild(arrowsWrapDiv);
 
 let currentScreen = 0;
 
-const ShowScreen = (numScr) => {
+const showScreen = (numScr) => {
   const elem = SECTION_MAIN.querySelector(`section`);
   const newElem = DOM_SCREENS_LINKS[numScr].screenLink.cloneNode(true);
 
@@ -55,28 +61,32 @@ const ShowScreen = (numScr) => {
   SECTION_MAIN.appendChild(newElem);
 };
 
-ShowScreen(0);
+showScreen(0);
 
-const NextScreen = () => ShowScreen(++currentScreen);
-const LastScreen = () => ShowScreen(--currentScreen);
+const nextScreen = () => showScreen(++currentScreen);
+const lastScreen = () => showScreen(--currentScreen);
 
-document.onkeydown = function(e) {
+document.onkeydown = function (e) {
   if (e.keyCode === 37 && currentScreen > 0 && currentScreen <= 3) {
-    LastScreen();
+    lastScreen();
   }
   if (e.keyCode === 39 && currentScreen >= 0 && currentScreen < 3) {
-    NextScreen();
+    nextScreen();
   }
 };
 
 const arrowsWrap = document.getElementsByClassName(`arrows__btn`);
-const arrowLast= arrowsWrap[0];
-const arrowNext= arrowsWrap[1];
+const arrowLast = arrowsWrap[0];
+const arrowNext = arrowsWrap[1];
 
-arrowLast.onclick = function(e) {
-  if (currentScreen > 0 && currentScreen <= 3) LastScreen();
+arrowLast.onclick = function () {
+  if (currentScreen > 0 && currentScreen <= 3) {
+    lastScreen();
+  }
 };
 
-arrowNext.onclick = function(e) {
-  if (currentScreen >= 0 && currentScreen < 3) NextScreen();
+arrowNext.onclick = function () {
+  if (currentScreen >= 0 && currentScreen < 3) {
+    nextScreen();
+  }
 };
