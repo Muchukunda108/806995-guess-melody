@@ -1,9 +1,5 @@
 // modal-confirm.js
 
-// import {getElementFromTemplate, changeScreen} from './util.js';
-// import './arrows.js';
-// import genre from './genre.js';
-
 const template = `<!--Модальное окно: подтверждение -->
 
 <section class="modal-confirm modal-confirm__wrap">
@@ -17,7 +13,5 @@ const template = `<!--Модальное окно: подтверждение --
     </div>
   </form>
 </section>`;
-
-// const element = getElementFromTemplate(template);
 
 export default template;

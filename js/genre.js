@@ -1,6 +1,7 @@
 // genre.js
-// import './arrows.js';
-// import {getElementFromTemplate} from './util.js';
+import {showScreen} from './util.js';
+import {default as welcomeScreen, addEvent} from './welcome-screen.js';
+import {default as resultWin, addEvents as addEventsResult} from './result-win.js';
 
 const template = `<!-- Игра на выбор жанра -->
 <section class="main main--level main--level-genre">
@@ -89,7 +90,36 @@ const template = `<!-- Игра на выбор жанра -->
   </div>
 </section>`;
 
-// const element = getElementFromTemplate(template);
+export const addEvents = () => {
+  const buttonAnswer = document.querySelector(`.genre-answer-send`);
 
+  const disableButton = () => {
+    buttonAnswer.setAttribute(`disabled`, `disabled`);
+  };
+
+  const activateButton = () => {
+    buttonAnswer.removeAttribute(`disabled`);
+  };
+
+  disableButton();
+
+  const checkboxesAnswer = document.getElementsByName(`answer`);
+  for (let i = 0; i < checkboxesAnswer.length; i++) {
+    const element = checkboxesAnswer[i];
+    element.addEventListener(`change`, () => {
+      activateButton();
+    });
+  }
+
+  buttonAnswer.addEventListener(`click`, () => {
+    showScreen(resultWin, addEventsResult);
+  });
+
+  const playAgain = document.querySelector(`.play-again`);
+  playAgain.addEventListener(`click`, () => {
+    showScreen(welcomeScreen, addEvent);
+  });
+
+};
 
 export default template;

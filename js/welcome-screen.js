@@ -1,8 +1,6 @@
 // welcome-screen.js
-
-// import {getElementFromTemplate} from './util.js';
-// import './arrows.js';
-// import genre from './genre.js';
+import {showScreen} from './util.js';
+import {default as levelArtist, addEvents as addEventArtists} from './level-artists.js';
 
 const template = `<!-- Приветствие -->
 <section class="main main--welcome">
@@ -16,7 +14,12 @@ const template = `<!-- Приветствие -->
   </p>
 </section>`;
 
-// const element = getElementFromTemplate(template);
+export const addEvent = () => {
+  const mainPlay = document.querySelector(`.main-play`);
+  mainPlay.addEventListener(`click`, () => {
+    showScreen(levelArtist, addEventArtists);
+  });
+};
 
 export default template;
 

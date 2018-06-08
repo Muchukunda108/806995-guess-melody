@@ -1,8 +1,7 @@
 // level artists
-
-// import './arrows.js';
-// import {getElementFromTemplate} from './util.js';
-
+import {showScreen} from './util.js';
+import {default as welcomeScreen, addEvent} from './welcome-screen.js';
+import {default as genre, addEvents as addEventsGenre} from './genre.js';
 
 const template = `<!-- Игра на выбор исполнителя -->
   <section class="main main--level main--level-artist">
@@ -68,6 +67,20 @@ const template = `<!-- Игра на выбор исполнителя -->
     </div>
   </section>`;
 
-// const element = getElementFromTemplate(template);
+export const addEvents = () =>{
+  const mainPlay = document.querySelectorAll(`.main-answer-wrapper`);
+  for (let i = 0; i < mainPlay.length; i++) {
+    const element = mainPlay[i];
+    element.addEventListener(`click`, () => {
+      showScreen(genre, addEventsGenre);
+    });
+  }
+
+  const playAgain = document.querySelector(`.play-again`);
+  playAgain.addEventListener(`click`, () => {
+    showScreen(welcomeScreen, addEvent);
+  });
+
+};
 
 export default template;

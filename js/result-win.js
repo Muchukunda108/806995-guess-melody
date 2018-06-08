@@ -1,8 +1,6 @@
 // result.js
-
-// import {getElementFromTemplate, changeScreen} from './util.js';
-// import './arrows.js';
-// import genre from './genre.js';
+import {showScreen} from './util.js';
+import {default as welcomeScreen, addEvent} from './welcome-screen.js';
 
 const template = ` <!-- Результат игры: выигрыш -->
   <section class="main main--result">
@@ -16,7 +14,12 @@ const template = ` <!-- Результат игры: выигрыш -->
     <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
   </section>`;
 
-// const element = getElementFromTemplate(template);
+export const addEvents = () =>{
+  const playAgain = document.querySelector(`.main-replay`);
+  playAgain.addEventListener(`click`, () => {
+    showScreen(welcomeScreen, addEvent);
+  });
 
+};
 export default template;
 
