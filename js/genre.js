@@ -1,7 +1,7 @@
 // genre.js
 import {showScreen} from './util.js';
-import {default as welcomeScreen, addEvent} from './welcome-screen.js';
-import {default as resultWin, addEvents as addEventsResult} from './result-win.js';
+import welcomeScreen from './welcome-screen.js';
+import resultWin from './result-win.js';
 
 const template = `<!-- Игра на выбор жанра -->
 <section class="main main--level main--level-genre">
@@ -90,7 +90,7 @@ const template = `<!-- Игра на выбор жанра -->
   </div>
 </section>`;
 
-export const addEvents = () => {
+const addEvents = () => {
   const buttonAnswer = document.querySelector(`.genre-answer-send`);
 
   const disableButton = () => {
@@ -112,14 +112,18 @@ export const addEvents = () => {
   }
 
   buttonAnswer.addEventListener(`click`, () => {
-    showScreen(resultWin, addEventsResult);
+    showScreen(resultWin.templ, resultWin.events);
   });
 
   const playAgain = document.querySelector(`.play-again`);
   playAgain.addEventListener(`click`, () => {
-    showScreen(welcomeScreen, addEvent);
+    showScreen(welcomeScreen.templ, welcomeScreen.events);
   });
 
 };
 
-export default template;
+const expObj = {
+  templ: template,
+  events: addEvents
+};
+export default expObj;

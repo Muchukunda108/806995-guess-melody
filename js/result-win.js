@@ -1,6 +1,6 @@
 // result.js
 import {showScreen} from './util.js';
-import {default as welcomeScreen, addEvent} from './welcome-screen.js';
+import welcomeScreen from './welcome-screen.js';
 
 const template = ` <!-- Результат игры: выигрыш -->
   <section class="main main--result">
@@ -14,12 +14,17 @@ const template = ` <!-- Результат игры: выигрыш -->
     <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
   </section>`;
 
-export const addEvents = () =>{
+const addEvents = () =>{
   const playAgain = document.querySelector(`.main-replay`);
   playAgain.addEventListener(`click`, () => {
-    showScreen(welcomeScreen, addEvent);
+    showScreen(welcomeScreen.templ, welcomeScreen.events);
   });
 
 };
-export default template;
+
+const expObj = {
+  templ: template,
+  events: addEvents
+};
+export default expObj;
 
